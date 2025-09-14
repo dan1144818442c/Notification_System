@@ -1,0 +1,272 @@
+[
+  {
+    "license_plate": "1000001",
+    "current_color": "White",
+    "current_type": "Sedan",
+    "original_type": "Sedan",
+    "original_color": "White",
+    "current_date": "2025-09-14",
+    "test_result": 0
+  },
+  {
+    "license_plate": "1000002",
+    "current_color": "Black",
+    "current_type": "SUV",
+    "original_type": "SUV",
+    "original_color": "Black",
+    "current_date": "2025-09-14",
+    "test_result": 0
+  },
+  {
+    "license_plate": "1000003",
+    "current_color": "Silver",
+    "current_type": "Hatchback",
+    "original_type": "Hatchback",
+    "original_color": "Silver",
+    "current_date": "2025-09-14",
+    "test_result": 0
+  },
+  {
+    "license_plate": "1000004",
+    "current_color": "Red",
+    "current_type": "Convertible",
+    "original_type": "Convertible",
+    "original_color": "Red",
+    "current_date": "2025-09-14",
+    "test_result": 0
+  },
+  {
+    "license_plate": "1000005",
+    "current_color": "Blue",
+    "current_type": "Truck",
+    "original_type": "Truck",
+    "original_color": "Blue",
+    "current_date": "2025-09-14",
+    "test_result": 0
+  },
+  {
+    "license_plate": "1000006",
+    "current_color": "Green",
+    "current_type": "Van",
+    "original_type": "Van",
+    "original_color": "Green",
+    "current_date": "2025-09-14",
+    "test_result": 0
+  },
+  {
+    "license_plate": "1000007",
+    "current_color": "Yellow",
+    "current_type": "Sedan",
+    "original_type": "Sedan",
+    "original_color": "Yellow",
+    "current_date": "2025-09-14",
+    "test_result": 0
+  },
+  {
+    "license_plate": "1000008",
+    "current_color": "Gray",
+    "current_type": "Coupe",
+    "original_type": "Coupe",
+    "original_color": "Gray",
+    "current_date": "2025-09-14",
+    "test_result": 0
+  },
+  {
+    "license_plate": "1000009",
+    "current_color": "Orange",
+    "current_type": "Hatchback",
+    "original_type": "Hatchback",
+    "original_color": "Orange",
+    "current_date": "2025-09-14",
+    "test_result": 0
+  },
+  {
+    "license_plate": "1000010",
+    "current_color": "Purple",
+    "current_type": "Truck",
+    "original_type": "Truck",
+    "original_color": "Purple",
+    "current_date": "2025-09-14",
+    "test_result": 0
+  },
+  {
+    "license_plate": "1000011",
+    "current_color": "White",
+    "current_type": "SUV",
+    "original_type": "SUV",
+    "original_color": "White",
+    "current_date": "2025-09-14",
+    "test_result": 0
+  },
+  {
+    "license_plate": "1000012",
+    "current_color": "Black",
+    "current_type": "Convertible",
+    "original_type": "Convertible",
+    "original_color": "Black",
+    "current_date": "2025-09-14",
+    "test_result": 0
+  },
+  {
+    "license_plate": "1000013",
+    "current_color": "Silver",
+    "current_type": "Truck",
+    "original_type": "Truck",
+    "original_color": "Silver",
+    "current_date": "2025-09-14",
+    "test_result": 0
+  },
+  {
+    "license_plate": "1000014",
+    "current_color": "Red",
+    "current_type": "Van",
+    "original_type": "Van",
+    "original_color": "Red",
+    "current_date": "2025-09-14",
+    "test_result": 0
+  },
+  {
+    "license_plate": "1000015",
+    "current_color": "Blue",
+    "current_type": "SUV",
+    "original_type": "SUV",
+    "original_color": "Blue",
+    "current_date": "2025-09-14",
+    "test_result": 0
+  },
+  {
+    "license_plate": "1000016",
+    "current_color": "Green",
+    "current_type": "Sedan",
+    "original_type": "Sedan",
+    "original_color": "Green",
+    "current_date": "2025-09-14",
+    "test_result": 0
+  },
+  {
+    "license_plate": "1000017",
+    "current_color": "Gray",
+    "current_type": "Coupe",
+    "original_type": "Coupe",
+    "original_color": "Gray",
+    "current_date": "2025-09-14",
+    "test_result": 0
+  },
+  {
+    "license_plate": "1000018",
+    "current_color": "Orange",
+    "current_type": "Truck",
+    "original_type": "Truck",
+    "original_color": "Orange",
+    "current_date": "2025-09-14",
+    "test_result": 0
+  },
+  {
+    "license_plate": "1000019",
+    "current_color": "Yellow",
+    "current_type": "Convertible",
+    "original_type": "Convertible",
+    "original_color": "Yellow",
+    "current_date": "2025-09-14",
+    "test_result": 0
+  },
+  {
+    "license_plate": "1000020",
+    "current_color": "Purple",
+    "current_type": "Van",
+    "original_type": "Van",
+    "original_color": "Purple",
+    "current_date": "2025-09-14",
+    "test_result": 0
+  },
+  {
+    "license_plate": "1000021",
+    "current_color": "Blue",
+    "current_type": "Sedan",
+    "original_type": "Sedan",
+    "original_color": "Blue",
+    "current_date": "2025-09-14",
+    "test_result": 0
+  },
+  {
+    "license_plate": "1000022",
+    "current_color": "White",
+    "current_type": "SUV",
+    "original_type": "SUV",
+    "original_color": "White",
+    "current_date": "2025-09-14",
+    "test_result": 0
+  },
+  {
+    "license_plate": "1000023",
+    "current_color": "Black",
+    "current_type": "Truck",
+    "original_type": "Truck",
+    "original_color": "Black",
+    "current_date": "2025-09-14",
+    "test_result": 0
+  },
+  {
+    "license_plate": "1000024",
+    "current_color": "Silver",
+    "current_type": "Convertible",
+    "original_type": "Convertible",
+    "original_color": "Silver",
+    "current_date": "2025-09-14",
+    "test_result": 0
+  },
+  {
+    "license_plate": "1000025",
+    "current_color": "Red",
+    "current_type": "Van",
+    "original_type": "Van",
+    "original_color": "Red",
+    "current_date": "2025-09-14",
+    "test_result": 0
+  },
+  {
+    "license_plate": "1000026",
+    "current_color": "Blue",
+    "current_type": "SUV",
+    "original_type": "SUV",
+    "original_color": "Blue",
+    "current_date": "2025-09-14",
+    "test_result": 0
+  },
+  {
+    "license_plate": "1000027",
+    "current_color": "Orange",
+    "current_type": "Hatchback",
+    "original_type": "Hatchback",
+    "original_color": "Orange",
+    "current_date": "2025-09-14",
+    "test_result": 0
+  },
+  {
+    "license_plate": "1000028",
+    "current_color": "Gray",
+    "current_type": "Coupe",
+    "original_type": "Coupe",
+    "original_color": "Gray",
+    "current_date": "2025-09-14",
+    "test_result": 0
+  },
+  {
+    "license_plate": "1000029",
+    "current_color": "White",
+    "current_type": "Convertible",
+    "original_type": "Convertible",
+    "original_color": "White",
+    "current_date": "2025-09-14",
+    "test_result": 0
+  },
+  {
+    "license_plate": "1000030",
+    "current_color": "Green",
+    "current_type": "Truck",
+    "original_type": "Truck",
+    "original_color": "Green",
+    "current_date": "2025-09-14",
+    "test_result": 0
+  }
+]
