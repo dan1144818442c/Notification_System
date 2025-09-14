@@ -2,14 +2,20 @@ from fastapi import FastAPI
 import uvicorn
 from contextlib import asynccontextmanager
 from utils.kafka_objects.consumer import Consumer
+from log.logger import Logger
+
+logger = Logger.get_logger()
 
 
-TOPICS = ["final_result_car"]
+TOPICS = ["final_results_for_car"]
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    consumer = Consumer(TOPICS)
-    app.state.current_message = get_results_car(consumer)
+    try:
+        consumer = Consumer(TOPICS)
+        app.state.current_message = get_results_car(consumer)
+    except Exception as e:
+        logger.error(f"Error can't consume to kafka: {e}")
     yield
 
 
