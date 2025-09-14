@@ -37,7 +37,7 @@ class Retriever:
             )
             rec = r.json()["result"]["records"]
             if not rec:
-                self.logger.warn(f"Vehicle with licence plate {license_plate} not found.")
+                self.logger.warning(f"Vehicle with licence plate {license_plate} not found.")
                 color, model = None, None
             else:
                 rec = rec[0]
