@@ -34,6 +34,8 @@ def get_results():
     if app.state.current_message is not None:
         current_message = next(app.state.current_message)
         return current_message
+    else:
+        return {"message:": "Error - can't consume events from kafka"}
 
 
 
