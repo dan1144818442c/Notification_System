@@ -8,6 +8,7 @@ from utils.kafka_objects.producer import Producer
 
 class Manager:
     def __init__(self):
+
         self.in_topic = os.environ.get("IN_TOPIC", "cars_with_details")
         self.out_topic = os.environ.get("OUT_TOPIC", "original_details_topic")
         self.consumer = self.consumer = Consumer(topics=self.in_topic)
