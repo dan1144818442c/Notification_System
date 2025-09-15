@@ -23,7 +23,7 @@ class GenAPI:
                         properties={
                             "model": types.Schema(type=types.Type.STRING),
                             "color": types.Schema(type=types.Type.STRING),
-                            "number": types.Schema(type=types.Type.STRING),
+                            "number": types.Schema(type=types.Type.INTEGER),
                             "type": types.Schema(type=types.Type.STRING),
                         },
                         required=["model", "color", "number", "type"]

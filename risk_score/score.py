@@ -15,11 +15,11 @@ class RiskScore:
     @staticmethod
     def comparison_with_the_original(fields_dict, data_dict):
         comparison_dictionary = {}
-        for field in fields_dict:
-            if data_dict[field.key] == data_dict[field.value][field.key]:
-                comparison_dictionary[field.key] = True
+        for key, value in fields_dict.items():
+            if data_dict[key] == data_dict[value][key]:
+                comparison_dictionary[key] = True
             else:
-                comparison_dictionary[field.key] = False
+                comparison_dictionary[key] = False
             return comparison_dictionary
 
     def calculate_score(self, fields_dict, data_dict):
