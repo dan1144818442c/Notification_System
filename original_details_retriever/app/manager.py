@@ -11,7 +11,7 @@ class Manager:
 
         self.in_topic = os.environ.get("IN_TOPIC", "cars_with_details")
         self.out_topic = os.environ.get("OUT_TOPIC", "original_details_topic")
-        self.consumer = self.consumer = Consumer(topics=self.in_topic)
+        self.consumer = self.consumer = Consumer(topics=[self.in_topic], group_id="original_details_group")
         self.producer = Producer()
         self.retriever = Retriever()
         self.logger = Logger.get_logger()

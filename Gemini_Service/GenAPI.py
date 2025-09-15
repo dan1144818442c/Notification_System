@@ -18,6 +18,17 @@ class GenAPI:
         return image_bytes
 
     def get_details_from_gemini(self, image_data):
+        schema = types.Schema(
+                        type=types.Type.OBJECT,
+                        properties={
+                            "model": types.Schema(type=types.Type.STRING),
+                            "color": types.Schema(type=types.Type.STRING),
+                            "number": types.Schema(type=types.Type.INTEGER),
+                            "type": types.Schema(type=types.Type.STRING),
+                        },
+                        required=["model", "color", "number", "type"]
+                    )
+
         response = self.Client.models.generate_content(
             model='gemini-2.5-flash',
             contents=[
@@ -26,10 +37,14 @@ class GenAPI:
                     mime_type='image/jpeg',
                 ),
                 self.Prompt
-            ]
+            ],
+            config = types.GenerateContentConfig(
+                response_mime_type="application/json",  # נכריח JSON
+                response_schema=schema  # נכריח מבנה
+            )
         )
         return response.text
 
     @staticmethod
     def convert_to_dict(result):
-        return json.loads(result.strip('`').strip('json').strip())
+        return json.loads(result)

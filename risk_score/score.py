@@ -3,10 +3,11 @@ from utils.kafka_objects.producer import Producer
 from utils.mongo_client.dal import MongoDAL
 import json
 
+
 class RiskScore:
     def __init__(self, topics:list[str], publisher_topic):
         self.topics = topics
-        self.consumer = Consumer(topics)
+        self.consumer = Consumer(topics = topics, group_id="risk_score_group")
         self.producer = Producer()
         self.publisher_topic = publisher_topic
 
@@ -14,11 +15,11 @@ class RiskScore:
     @staticmethod
     def comparison_with_the_original(fields_dict, data_dict):
         comparison_dictionary = {}
-        for field in fields_dict:
-            if data_dict[field.key] == data_dict[field.value][field.key]:
-                comparison_dictionary[field.key] = True
+        for key, value in fields_dict.items():
+            if data_dict[key] == data_dict[value][key]:
+                comparison_dictionary[key] = True
             else:
-                comparison_dictionary[field.key] = False
+                comparison_dictionary[key] = False
             return comparison_dictionary
 
     def calculate_score(self, fields_dict, data_dict):
@@ -30,8 +31,10 @@ class RiskScore:
     def get_score(self, fields_dict):
         events = self.consumer.consumer
         for event in events:
+            print(event)
             data = event.value
             score = self.calculate_score(fields_dict, data)
             data["score"] = score
             self.producer.publish_message(self.publisher_topic, data)
+            print(f"Published data with score {data} to topic {self.publisher_topic}")
 
