@@ -3,10 +3,6 @@ from google import genai
 import json
 import os
 
-
-from dotenv import load_dotenv, find_dotenv
-load_dotenv(find_dotenv())
-
 class GenAPI:
 
     def __init__(self):
