@@ -1,4 +1,4 @@
-from connection import Connection
+from utils.mongo_client.connection import Connection
 import gridfs
 from log.logger import Logger
 
