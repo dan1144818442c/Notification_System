@@ -15,7 +15,7 @@ class RiskScore:
     def comparison_with_the_original(fields_dict, data_dict):
         comparison_dictionary = {}
         for field in fields_dict:
-            if data_dict[field.key] == data_dict[field.value]:
+            if data_dict[field.key] == data_dict[field.value][field.key]:
                 comparison_dictionary[field.key] = True
             else:
                 comparison_dictionary[field.key] = False
@@ -23,14 +23,15 @@ class RiskScore:
 
     def calculate_score(self, fields_dict, data_dict):
         comparison_dict = self.comparison_with_the_original(fields_dict, data_dict)
+        score = 0
+        return score
 
 
-
-
-    def get_score(self, fields_dict, data_dict):
+    def get_score(self, fields_dict):
         events = self.consumer.consumer
         for event in events:
-            data = json.loads(event.value)
-            score_dictionary = self.comparison_with_the_original(fields_dict, data_dict)
-            self.producer.publish_message(self.publisher_topic, json.dumps(score_dictionary))
+            data = event.value
+            score = self.calculate_score(fields_dict, data)
+            data["score"] = score
+            self.producer.publish_message(self.publisher_topic, data)
 
