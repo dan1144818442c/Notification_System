@@ -8,7 +8,7 @@ from utils.kafka_objects.producer import Producer
 
 class Manager:
     def __init__(self):
-        self.in_topic = os.environ.get("IN_TOPIC", "current_details_topic")
+        self.in_topic = os.environ.get("IN_TOPIC", "cars_with_details")
         self.out_topic = os.environ.get("OUT_TOPIC", "original_details_topic")
         self.consumer = self.consumer = Consumer(topics=self.in_topic)
         self.producer = Producer()
@@ -22,7 +22,7 @@ class Manager:
         for message in self.consumer.consumer:
             try:
                 self.logger.info(f"Received message: {message.value}")
-                license_plate = message.value.get("licence_plate")
+                license_plate = message.value.get("number")
                 type = message.value.get("type")
                 message.value["original_details"] = self.retriever.retrieve_cars_data(license_plate, type)
 
