@@ -26,6 +26,18 @@ class MongoDAL:
             logger.error("Error retrieving documents")
             raise DALError(f"Error retrieving documents: {e}")
 
+
+    def find_documents(self, collection_name, query):
+        """Find a document in MongoDB based on a query"""
+        try:
+            collection_conn = self.db_conn[collection_name]
+            return list(collection_conn.find(query))
+
+        except Exception as e:
+            logger.error("Error retrieving documents")
+            raise DALError(f"Error retrieving documents with query {query}: {e}")
+
+
     def insert_document(self,collection_name, doc:dict):
         """Inserting a document into MongoDB"""
         try:
