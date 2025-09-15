@@ -13,19 +13,20 @@ TOPICS = ["final_results_for_car"]
 async def lifespan(app: FastAPI):
     try:
         consumer = Consumer(TOPICS)
-        app.state.current_message = get_results_car(consumer)
+        app.state.current_message = consume_generator(consumer)
     except Exception as e:
         logger.error(f"Error can't consume to kafka: {e}")
     yield
 
 
-def get_results_car(consumer:Consumer):
+def consume_generator(consumer:Consumer):
     for message in consumer.consumer:
+        print(message.offset)
         yield message.value
 
 
 app = FastAPI(lifespan=lifespan)
-app.state.current_message = None
+# app.state.current_message = None
 
 
 
