@@ -12,7 +12,7 @@ TOPICS = ["final_results_for_car"]
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     try:
-        consumer = Consumer(TOPICS)
+        consumer = Consumer(topics= TOPICS, group_id="route_group")
         app.state.current_message = consume_generator(consumer)
     except Exception as e:
         logger.error(f"Error can't consume to kafka: {e}")
