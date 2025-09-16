@@ -26,7 +26,7 @@ class Retriever:
                 return self.get_original_vehicle_data(license_plate, self.heavy_vehicles_rid)
             case _:
                 self.logger.error("Invalid type. Must be 'commercial', 'heavy', 'motorcycle', or 'public'.")
-                return {"color": None, "model": None}, "false"
+                return {"color": "not found", "model": "not found"}, "false"
 
 
     def get_original_vehicle_data(self, license_plate, RID):
@@ -44,26 +44,26 @@ class Retriever:
             rec = r.json().get("result")["records"]
             if not rec:
                 self.logger.warning(f"Vehicle with licence plate {license_plate} not found.")
-                color, model = None, None
+                color, model = "not found", "not found"
             else:
                 rec = rec[0]
 
                 color_value = rec.get("tzeva_rechev")
-                color = str(color_value) if color_value is not None else None
+                color = str(color_value) if color_value is not None else "not found"
 
                 model_value = rec.get("kinuy_mishari") or rec.get("degem_nm")
-                model = str(model_value) if model_value is not None else None
+                model = str(model_value) if model_value is not None else "not found"
 
             self.logger.info(f"Retrieved original details for vehicle with license plate {license_plate}: color={color}, model={model}")
             return {"color": color, "model": model}, "false"
 
          except requests.RequestException as e:
             self.logger.error(f"Error retrieving data from gov.il api: {e}")
-            return {"color": None, "model": None}, "false"
+            return {"color": "not found", "model": "not found"}, "false"
 
          except Exception as e:
             self.logger.error(f"Error retrieving original vehicle data: {e}")
-            return {"color": None, "model": None}, "false"
+            return {"color": "not found", "model": "not found"}, "false"
 
 
     def check_if_off_road(self, license_plate: str) -> dict | None:
@@ -82,11 +82,13 @@ class Retriever:
             self.logger.info(f"Vehicle with licence plate {license_plate} is off the road.")
             rec = rec[0]
 
-            color = rec.get("tzeva_rechev")
-            model = rec.get("kinuy_mishari") or rec.get("degem_nm")
+            color_value = rec.get("tzeva_rechev")
+            color = str(color_value) if color_value is not None else "not found"
 
-            return {"color": str(color), "model": str(model)}
+            model_value = rec.get("kinuy_mishari") or rec.get("degem_nm")
+            model = str(model_value) if model_value is not None else "not found"
 
+            return {"color": color, "model": model}
 
         except requests.RequestException as e:
             self.logger.error(f"Error retrieving data from gov.il api: {e}")
