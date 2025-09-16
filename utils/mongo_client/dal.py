@@ -1,6 +1,7 @@
 from utils.mongo_client.connection import Connection
 import gridfs
 from log.logger import Logger
+from bson import ObjectId
 
 logger = Logger.get_logger("MongoDAL_logger")
 
@@ -58,8 +59,9 @@ class MongoDAL:
 
     def get_binary(self,file_id:str):
         """Returns binary content from MongoDB"""
+        oid = ObjectId(file_id)
         try:
-            b_data = self.fs.get(file_id=file_id)
+            b_data = self.fs.get(file_id=oid)
             return b_data.read()
         except Exception as e:
             logger.error("Error retrieving binary data from mongoDB")
