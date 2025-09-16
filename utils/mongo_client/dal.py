@@ -47,10 +47,11 @@ class MongoDAL:
             logger.error("Error inserting document")
             raise DALError(f"Error inserting document: {e}")
 
-    def insert_binary(self, file_id:str,binary_data:bytes):
+    def insert_binary(self,binary_data:bytes):
         """Inserting binary content into MongoDB"""
         try:
-            self.fs.put(binary_data,**{"_id":file_id})
+            file_id = self.fs.put(binary_data)
+            return file_id
         except Exception as e:
             logger.error("Error inserting binary data into mongoDB")
             raise e
