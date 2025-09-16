@@ -34,8 +34,15 @@ class RiskScore:
     def calculate_score(self, fields_dict, data_dict):
         comparison_dict = self.comparison_with_the_original(fields_dict, data_dict)
 
-        score = (sum(comparison_dict.values()) / len(comparison_dict)) * 100
-        return score
+        score = sum(comparison_dict.values())
+        times_enter = self.calculate_score_of_enters(self.get_list_of_time_enters(car_id = data_dict['number']))
+        if times_enter > 3 :
+            score = (score +( 0.5 * (times_enter -3))) / (len(data_dict) + 1)
+        else:
+            score = score / len(data_dict)
+
+
+        return score * 100
 
 
     def get_list_of_time_enters(self , car_id):
@@ -46,9 +53,15 @@ class RiskScore:
         now = datetime.now()
         time_window = timedelta(hours=1, minutes=30)  # שעה וחצי אחורה
 
+        for e in list_of_enters:
+            e["entry_time"] = datetime.fromisoformat(e["entry_time"])
+
+        now = datetime.now(datetime.utcnow().astimezone().tzinfo)  # עם timezone
+        time_window = timedelta(hours=1, minutes=30)
+
         recent_entries = [e for e in list_of_enters if (now - e["entry_time"]) <= time_window]
 
-        return len(recent_entries) 
+        return len(recent_entries)
 
     def get_score(self, fields_dict):
         events = self.consumer.consumer
@@ -61,5 +74,5 @@ class RiskScore:
             print(f"Published data with score {data} to topic {self.publisher_topic}")
 
 
-a = RiskScore("A" , "s")
-a.get_list_of_time_enters()
+# a = RiskScore("A" , "s")
+# a.get_list_of_time_enters()
