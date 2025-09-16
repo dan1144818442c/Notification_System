@@ -24,12 +24,15 @@ class RiskScore:
     @staticmethod
     def comparison_with_the_original(fields_dict, data_dict):
         comparison_dictionary = {}
-        for key, value in fields_dict.items():
-            if data_dict[key] in data_dict[value][key]:
-                comparison_dictionary[key] = True
-            else:
-                comparison_dictionary[key] = False
-            return comparison_dictionary
+        try:
+            for key, value in fields_dict.items():
+                if data_dict[key] in data_dict[value][key]:
+                    comparison_dictionary[key] = True
+                else:
+                    comparison_dictionary[key] = False
+                return comparison_dictionary
+        except:
+            return {}
 
     def calculate_score(self, fields_dict, data_dict):
         comparison_dict = self.comparison_with_the_original(fields_dict, data_dict)
@@ -53,10 +56,8 @@ class RiskScore:
         now = datetime.now()
         time_window = timedelta(hours=1, minutes=30)  # שעה וחצי אחורה
 
-        for e in list_of_enters:
-            e["entry_time"] = datetime.fromisoformat(e["entry_time"])
 
-        now = datetime.now(datetime.utcnow().astimezone().tzinfo)  # עם timezone
+        now = datetime.now()  # עם timezone
         time_window = timedelta(hours=1, minutes=30)
 
         recent_entries = [e for e in list_of_enters if (now - e["entry_time"]) <= time_window]
