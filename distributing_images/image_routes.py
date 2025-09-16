@@ -34,8 +34,9 @@ async def upload_image(file: UploadFile = File(...)):
 async def get_image(image_id: str):
     logger = Logger().get_logger()
     try:
-        mongo_conn = connection.Connection(config.MONGO_CONNECTION_STRING, config.MONGO_DB_NAME)
-        file_data = dal.MongoDAL(mongo_conn).get_binary(image_id)
+        client = MongoClient(config.MONGO_CONNECTION_STRING)
+        con = connection.Connection(client=client, db_name=config.MONGO_DB_NAME)
+        file_data = dal.MongoDAL(con).get_binary(image_id)
 
         if not file_data:
             logger.error("file not found")
