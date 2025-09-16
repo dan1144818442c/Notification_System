@@ -10,11 +10,9 @@ class GenAPI:
         self.Prompt = os.getenv('PROMPT_HOLDER')
         self.Client = genai.Client()
 
-
-    def open_image_for_send(self, path_file):
-        with open(path_file, 'rb') as file:
-            image_bytes = file.read()
-
+    @staticmethod
+    def read_image_for_send(file):
+        image_bytes = file.read()
         return image_bytes
 
     def get_details_from_gemini(self, image_data):
@@ -46,5 +44,6 @@ class GenAPI:
         return response.text
 
     @staticmethod
-    def convert_to_dict(result):
+    def convert_to_dict_response_and_id(result, image_id):
+        result['image_id'] = image_id
         return json.loads(result)
