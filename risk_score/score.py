@@ -38,17 +38,24 @@ class RiskScore:
         comparison_dict = self.comparison_with_the_original(fields_dict, data_dict)
 
         data_dict['description'] = ""
-        score = list(comparison_dict.values()).count(False)
+        score =  list(comparison_dict.values()).count(False) * 33.33333
+        if score:
+            score /= len(comparison_dict)
+            data_dict['description'] += f"הרכב חשוד כגנוב.\n "
 
         times_enter = self.calculate_score_of_enters(self.get_list_of_time_enters(car_id = data_dict['number']))
         if times_enter > 3 :
-            score = (score +( 0.5 * (times_enter -3))) / (len(data_dict) + 1)
-            data_dict['description'] += f"times enter : {times_enter}"
-        else:
-            score = score / len(data_dict)
+            score += ( 5 * (times_enter -3))
+            data_dict['description'] += f"הרכב נראה לאחרונה {times_enter} פעמים \n"
 
-        data_dict["score"] = score * 100
-        data_dict['description'] += f" is_off_road : {data_dict['is_off_road']} , score : {score}  "
+
+        if  data_dict['is_off_road'] == "true":
+            score = score + 33.3333
+            data_dict['description'] += f"הרכב ירד מהכביש. "
+
+        if score > 100:
+            score = 100
+
         return data_dict
 
 
@@ -76,5 +83,3 @@ class RiskScore:
             data =self.update_score_and_description(fields_dict, data)
             self.producer.publish_message(self.publisher_topic, data)
             print(f"Published data with score {data} to topic {self.publisher_topic}")
-
-
