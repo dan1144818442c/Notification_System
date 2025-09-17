@@ -16,7 +16,7 @@ class Consumer:
             group_id=group_id,
             value_deserializer=lambda m: json.loads(m.decode(decode)),
             bootstrap_servers= [bootstrap_server],
-            auto_offset_reset='latest',
+            auto_offset_reset='earliest',
             enable_auto_commit=False,
             max_poll_interval_ms=1200000
         )

@@ -26,7 +26,8 @@ class RiskScore:
         comparison_dictionary = {}
         try:
             for key, value in fields_dict.items():
-                if data_dict[key] in data_dict[value][key]:
+                if data_dict[key].lower() in data_dict[value][key].lower()\
+                        or data_dict[value][key].lower() in data_dict[key].lower():
                     comparison_dictionary[key] = True
                 else:
                     comparison_dictionary[key] = False
@@ -55,7 +56,7 @@ class RiskScore:
 
         if score > 100:
             score = 100
-
+        data_dict['score'] = score
         return data_dict
 
 
@@ -65,7 +66,7 @@ class RiskScore:
 
     def calculate_score_of_enters(self , list_of_enters):
         now = datetime.now()
-        time_window = timedelta(hours=1, minutes=30)  # שעה וחצי אחורה
+        time_window = timedelta(hours=1, minutes=30)
 
 
         now = datetime.now()  # עם timezone
