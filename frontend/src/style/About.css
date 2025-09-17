@@ -1,0 +1,21 @@
+#aboutPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  height: 35rem;
+  margin: 2rem;
+  background-color: #123450;
+}
+
+#aboutBox {
+  width: 85%;
+  height: 85%;
+}
+
+#aboutText {
+  color: white;
+  font-size: larger;
+  font-family: Courier New;
+}

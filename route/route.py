@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 import uvicorn
 from contextlib import asynccontextmanager
+from fastapi.middleware.cors import CORSMiddleware
 from utils.kafka_objects.consumer import Consumer
 from log.logger import Logger
 
@@ -28,6 +29,14 @@ def consume_generator(consumer:Consumer):
 app = FastAPI(lifespan=lifespan)
 # app.state.current_message = None
 
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 @app.get('/')

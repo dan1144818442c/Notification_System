@@ -1,0 +1,39 @@
+#detailsComp {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  border: 0.2rem solid #123450;
+  border-radius: 0.8rem;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+    rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  height: 35rem;
+}
+
+#ulDetails {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  gap: 1rem;
+}
+
+.liInfo {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  width: 90%;
+  height: 3rem;
+  border-radius: 1rem;
+  background-color: #123450;
+  color: white;
+  font-size: large;
+  font-family: Courier New;
+}
+
+.liInfo:hover {
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+    rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}

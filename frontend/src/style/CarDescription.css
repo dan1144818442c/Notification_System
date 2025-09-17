@@ -1,0 +1,44 @@
+#description {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 80%;
+  height: 7rem;
+  border-radius: 0.7rem;
+  color: white;
+  font-size: large;
+  font-family: "Courier New", monospace;
+  /* אל תגדיר background-color כאן אם אתה רוצה שהאנימציה תתפעל אותו,
+     או הגדר אותו כאן גם כדי שיהיה ברור מהצבע ההתחלתי */
+  background-color: #123450;
+}
+
+@keyframes pulseAndColor {
+  0% {
+    transform: scale(1);
+    background-color: #123450;
+  }
+  50% {
+    transform: scale(0.9);
+    background-color: red;
+  }
+  100% {
+    transform: scale(1);
+    background-color: #123450;
+  }
+}
+
+#description.dangerous {
+  animation: pulseAndColor 1s infinite ease-in-out;
+  /* ל-webkit (ספארי ישן): */
+  -webkit-animation: pulseAndColor 1s infinite ease-in-out;
+}
+
+#description.regular {
+  box-shadow: 0 0 15px 3px rgba(0, 255, 0, 0.7);
+}
+
+#description.unsafe {
+  box-shadow: 0 0 15px 3px rgba(160, 80, 23, 0.7);
+}

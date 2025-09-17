@@ -1,4 +1,5 @@
 from fastapi import FastAPI, UploadFile, File
+from fastapi.middleware.cors import CORSMiddleware
 from utils.mongo_client import dal, connection
 from distributing_images import config
 from utils.kafka_objects.producer import Producer
@@ -8,6 +9,14 @@ import uvicorn
 from  pymongo import MongoClient
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.post("/upload-image")
 async def upload_image(file: UploadFile = File(...)):
@@ -33,8 +42,10 @@ async def upload_image(file: UploadFile = File(...)):
 @app.get("/image/{image_id}")
 async def get_image(image_id: str):
     logger = Logger().get_logger()
+    print(image_id)
     try:
-        mongo_conn = connection.Connection(config.MONGO_CONNECTION_STRING, config.MONGO_DB_NAME)
+        client = MongoClient(config.MONGO_CONNECTION_STRING)
+        mongo_conn = connection.Connection(client, config.MONGO_DB_NAME)
         file_data = dal.MongoDAL(mongo_conn).get_binary(image_id)
 
         if not file_data:
