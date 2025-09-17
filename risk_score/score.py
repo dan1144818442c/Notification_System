@@ -34,18 +34,22 @@ class RiskScore:
         except:
             return {}
 
-    def calculate_score(self, fields_dict, data_dict):
+    def update_score_and_description(self, fields_dict, data_dict):
         comparison_dict = self.comparison_with_the_original(fields_dict, data_dict)
 
-        score = sum(comparison_dict.values())
+        data_dict['description'] = ""
+        score = list(comparison_dict.values()).count(False)
+
         times_enter = self.calculate_score_of_enters(self.get_list_of_time_enters(car_id = data_dict['number']))
         if times_enter > 3 :
             score = (score +( 0.5 * (times_enter -3))) / (len(data_dict) + 1)
+            data_dict['description'] += f"times enter : {times_enter}"
         else:
             score = score / len(data_dict)
 
-
-        return score * 100
+        data_dict["score"] = score * 100
+        data_dict['description'] += f" is_off_road : {data_dict['is_off_road']} , score : {score}  "
+        return data_dict
 
 
     def get_list_of_time_enters(self , car_id):
@@ -69,11 +73,8 @@ class RiskScore:
         for event in events:
             print(event)
             data = event.value
-            score = self.calculate_score(fields_dict, data)
-            data["score"] = score
+            data =self.update_score_and_description(fields_dict, data)
             self.producer.publish_message(self.publisher_topic, data)
             print(f"Published data with score {data} to topic {self.publisher_topic}")
 
 
-# a = RiskScore("A" , "s")
-# a.get_list_of_time_enters()
