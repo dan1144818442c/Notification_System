@@ -1,7 +1,6 @@
-import os
 import requests
 from config import *
-from log.logger import Logger
+from utils.log.logger import Logger
 
 logger = Logger.get_logger("camera_control")
 

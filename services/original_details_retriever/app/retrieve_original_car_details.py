@@ -1,6 +1,6 @@
 import requests, os, json
 
-from log.logger import Logger
+from utils.log.logger import Logger
 
 
 class Retriever:

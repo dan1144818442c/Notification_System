@@ -1,8 +1,8 @@
 from fastapi import FastAPI, UploadFile, File
 from utils.mongo_client import dal, connection
-from distributing_images import config
+from services.distributing_images import config
 from utils.kafka_objects.producer import Producer
-from log.logger import Logger
+from utils.log.logger import Logger
 from fastapi.responses import Response
 import uvicorn
 from  pymongo import MongoClient
@@ -15,7 +15,7 @@ async def upload_image(file: UploadFile = File(...)):
     logger = Logger().get_logger()
     try:
         client = MongoClient(config.MONGO_CONNECTION_STRING)
-        con =  connection.Connection(client = client , db_name= config.MONGO_DB_NAME)
+        con =  connection.Connection(client = client, db_name= config.MONGO_DB_NAME)
         mongo_conn = dal.MongoDAL(con)
         file_id = mongo_conn.insert_binary(content)
         logger.info(f"Saved file in Mongo with ID {file_id}")

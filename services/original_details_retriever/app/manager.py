@@ -1,6 +1,6 @@
 import os
 
-from log.logger import Logger
+from utils.log.logger import Logger
 from retrieve_original_car_details import Retriever
 from utils.kafka_objects.consumer import Consumer
 from utils.kafka_objects.producer import Producer
