@@ -12,7 +12,7 @@ class GenAPI:
 
     @staticmethod
     def read_image_for_send(file):
-        image_bytes = file.read()
+        image_bytes = file
         return image_bytes
 
     def get_details_from_gemini(self, image_data):
@@ -45,5 +45,6 @@ class GenAPI:
 
     @staticmethod
     def convert_to_dict_response_and_id(result, image_id):
+        result = json.loads(result)
         result['image_id'] = image_id
-        return json.loads(result)
+        return result

@@ -34,11 +34,11 @@ class Manager:
         for event in events:
             image_id = event.value
             try:
-                file = self.MongoDal.get_binary(image_id)
+                file_readed = self.MongoDal.get_binary(image_id)
                 self.Logger.info('fetch the image from mongo succeed')
 
                 try:
-                    image_data = self.GenAPI.read_image_for_send(file=file)
+                    image_data = self.GenAPI.read_image_for_send(file=file_readed)
                     response = self.GenAPI.get_details_from_gemini(image_data)
                     result = self.GenAPI.convert_to_dict_response_and_id(response, image_id)
                     self.Logger.info('Gemini processed the image')
@@ -49,8 +49,8 @@ class Manager:
                     except:
                         self.Logger.error('Producer not complete the publish')
 
-                except:
-                    self.Logger.error('Gemini not processed the image')
+                except Exception as e:
+                    self.Logger.error(f'Gemini not processed the image {e}')
 
             except:
                 self.Logger.error('fetch image from mongo not complete')
