@@ -1,20 +1,24 @@
 import { useEffect, useState } from "react";
 import "../style/CarPage.css";
-import Description from "./CarDescription";
+import CarDescription from "./CarDescription";
+import ContinueButton from "./ContinueButton";
 
-export default function CarImage({
+export default function CarPage({
   image,
   description,
   score,
+  continueSowCar,
+  isDangerous,
 }: {
   image: string | undefined;
   description: string;
   score: number;
+  continueSowCar: () => void;
+  isDangerous: boolean;
 }) {
   const [carImageUrl, setCarImage] = useState<string>();
 
   useEffect(() => {
-    if (!image) return;
     const getCarData = async () => {
       try {
         const respons = await fetch(`http://localhost:8001/image/${image}`, {
@@ -33,7 +37,8 @@ export default function CarImage({
     <>
       <article id="carPage">
         <img id="image" src={carImageUrl} alt="" />
-        <Description description={description} score={score} />
+        <CarDescription description={description} score={score} />
+        <ContinueButton ifShow={isDangerous} setRefresh={continueSowCar} />
       </article>
     </>
   );

@@ -1,0 +1,10 @@
+#continu {
+  width: 80%;
+  height: 4rem;
+  background-color: #123450;
+  border-radius: 0.8rem;
+  color: white;
+  font-size: larger;
+  font-family: "Courier New", Courier, monospace;
+  box-shadow: 0 0 15px 3px rgba(0, 255, 0, 0.7);
+}

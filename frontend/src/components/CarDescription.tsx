@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "../style/CarDescription.css";
 
-export default function Description({
+export default function CarDescription({
   description,
   score,
 }: {
@@ -20,7 +20,7 @@ export default function Description({
   }, [score]);
   return (
     <section id="description" className={className}>
-      <p id="descriptionText">תיאור : {description} </p>
+      <p id="descriptionText">תיאור : {description}</p>
     </section>
   );
 }

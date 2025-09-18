@@ -2,6 +2,7 @@ import "../../style/Header.css";
 import imageLogo from "../../logosImages/image.png";
 import NavBar from "../NavBar";
 import { NavLink } from "react-router";
+import Welcome from "../Welcome";
 
 export default function Header() {
   return (
@@ -9,7 +10,7 @@ export default function Header() {
       <header id="header">
         <section id="nainHeader">
           <img id="policeLogo" src={imageLogo} alt="Linkodkod logo" />
-          <NavBar />
+          <Welcome />
           <div>
             <NavLink id="nameApp" to="about" end>
               About
