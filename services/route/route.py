@@ -3,7 +3,7 @@ import uvicorn
 from contextlib import asynccontextmanager
 from fastapi.middleware.cors import CORSMiddleware
 from utils.kafka_objects.consumer import Consumer
-from log.logger import Logger
+from utils.log.logger import Logger
 
 logger = Logger.get_logger()
 

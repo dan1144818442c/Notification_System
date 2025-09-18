@@ -2,9 +2,9 @@ from utils.mongo_client.connection import Connection
 from utils.kafka_objects.producer import Producer
 from utils.kafka_objects.consumer import Consumer
 from utils.mongo_client.dal import MongoDAL
-from Gemini_Service.GenAPI import GenAPI
+from services.Gemini_Service.GenAPI import GenAPI
 from pymongo import MongoClient
-from log.logger import Logger
+from utils.log.logger import Logger
 import os
 
 

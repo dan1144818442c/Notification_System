@@ -6,8 +6,6 @@ from pymongo import MongoClient
 import config
 from datetime import datetime, timedelta
 
-import json
-
 
 class RiskScore:
     def __init__(self, topics:list[str], publisher_topic):
@@ -17,7 +15,7 @@ class RiskScore:
         self.publisher_topic = publisher_topic
 
         self.client_mongo = MongoClient()
-        self.connection = Connection(self.client_mongo ,db_name= config.MONGO_DB_NAME)
+        self.connection = Connection(self.client_mongo, db_name= config.MONGO_DB_NAME)
         self.dal_mongo = MongoDAL(connection=self.connection)
 
 
@@ -61,7 +59,7 @@ class RiskScore:
 
 
     def get_list_of_time_enters(self , car_id):
-        list_doc = self.dal_mongo.find_documents(collection_name=config.MONGO_COLLECTION_NAME , query={"car_id": car_id} )
+        list_doc = self.dal_mongo.find_documents(collection_name=config.MONGO_COLLECTION_NAME, query={"car_id": car_id})
         return list_doc
 
     def calculate_score_of_enters(self , list_of_enters):

@@ -3,7 +3,7 @@ from utils.mongo_client.connection import Connection
 from utils.mongo_client.dal import MongoDAL
 from pymongo import MongoClient
 from config import *
-from log.logger import Logger
+from utils.log.logger import Logger
 from datetime import datetime
 
 logger = Logger.get_logger("Writer_logger")

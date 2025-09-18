@@ -1,6 +1,6 @@
 from elasticsearch import Elasticsearch
 from elasticsearch.helpers import bulk
-from log.logger import Logger
+from utils.log.logger import Logger
 
 logger = Logger.get_logger("ElasticDAL_logger")
 
